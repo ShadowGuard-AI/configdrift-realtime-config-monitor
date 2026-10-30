@@ -1,3 +1,5 @@
+![Banner](banner.png)
+
 # config-drift-configdrift-RealtimeConfigMonitor
 A tool that monitors system configuration files in real-time and alerts on any unexpected changes, using file system events (e.g., via `watchdog`). - Focused on Detects unauthorized or unexpected changes to system configurations. Compares current configuration files against known good baselines and reports any deviations. Supports version control integration for historical analysis and rollback.
 
