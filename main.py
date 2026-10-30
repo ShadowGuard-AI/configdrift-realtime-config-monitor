@@ -35,23 +35,40 @@ class ConfigChangeHandler(FileSystemEventHandler):
             version_control: Whether to integrate with version control (not implemented).
         """
         super().__init__()
-        self.config_files = config_files
+        # Keys are stored as absolute paths. watchdog reports
+        # src_path spelled from the directory given to the observer
+        # (absolute, in main), while users pass config paths in any
+        # spelling, often relative. Compared raw, a relative key can
+        # never equal the event path and the monitor stays silent
+        # while reporting that it is watching.
+        self.config_files = {
+            os.path.abspath(path): name for path, name in config_files.items()
+        }
         self.baseline_dir = baseline_dir
         self.version_control = version_control  # Placeholder
         self.logger = logging.getLogger(__name__)
 
-    def on_modified(self, event):
-        """
-        Called when a file or directory is modified.
+    def _dispatch(self, filepath):
+        if os.path.abspath(filepath) in self.config_files:
+            self.check_config_drift(os.path.abspath(filepath))
 
-        Args:
-            event: The event object describing the change.
-        """
+    def on_modified(self, event):
         if event.is_directory:
             return
-        filepath = event.src_path
-        if filepath in self.config_files:
-            self.check_config_drift(filepath)
+        self._dispatch(event.src_path)
+
+    def on_created(self, event):
+        if event.is_directory:
+            return
+        self._dispatch(event.src_path)
+
+    def on_moved(self, event):
+        # Editors that save by writing a temp file and renaming it
+        # over the config produce a move, not a modification, and the
+        # destination is the path that matters.
+        if event.is_directory:
+            return
+        self._dispatch(event.dest_path)
 
     def check_config_drift(self, filepath: str):
         """
