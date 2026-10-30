@@ -1,7 +1,7 @@
 ![Banner](banner.png)
 
 # configdrift-realtime-config-monitor
-A tool that monitors system configuration files in real-time and alerts on any unexpected changes, using file system events (e.g., via `watchdog`). - Focused on Detects unauthorized or unexpected changes to system configurations. Compares current configuration files against known good baselines and reports any deviations. Supports version control integration for historical analysis and rollback.
+A tool that monitors system configuration files in real-time and alerts on any unexpected changes, using file system events (e.g., via `watchdog`). - Focused on Detects unauthorized or unexpected changes to system configurations. Compares current configuration files against known good baselines and reports any deviations. A --version-control flag is accepted, but the version control integration is not implemented.
 
 ## Install
 `git clone https://github.com/ShadowStrikeHQ/configdrift-realtime-config-monitor`
