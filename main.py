@@ -62,13 +62,35 @@ class ConfigChangeHandler(FileSystemEventHandler):
             return
         self._dispatch(event.src_path)
 
+    def _alert_missing(self, filepath):
+        abspath = os.path.abspath(filepath)
+        name = self.config_files.get(abspath, abspath)
+        self.logger.warning(
+            f"Configuration drift detected: watched file {name} ({abspath}) "
+            "is missing. It was deleted or moved away, so it no longer "
+            "matches its baseline."
+        )
+
+    def on_deleted(self, event):
+        if event.is_directory:
+            return
+        if os.path.abspath(event.src_path) in self.config_files:
+            self._alert_missing(event.src_path)
+
     def on_moved(self, event):
         # Editors that save by writing a temp file and renaming it
         # over the config produce a move, not a modification, and the
         # destination is the path that matters.
         if event.is_directory:
             return
-        self._dispatch(event.dest_path)
+        dest = os.path.abspath(event.dest_path)
+        src = os.path.abspath(event.src_path)
+        if dest in self.config_files:
+            self._dispatch(event.dest_path)
+        elif src in self.config_files:
+            # A watched file renamed away to an unwatched name is
+            # gone from its watched path, the same loss as a delete.
+            self._alert_missing(event.src_path)
 
     def check_config_drift(self, filepath: str):
         """
@@ -198,6 +220,12 @@ def main():
             observer.schedule(event_handler, directory, recursive=False)
             watched_directories.add(directory)
             logging.info(f"Watching directory: {directory}")
+
+    # Check every watched file once at startup, before the observer
+    # starts, so drift that was already present at launch is reported
+    # instead of waiting for the file to change again.
+    for config_file in args.config_files:
+        event_handler.check_config_drift(os.path.abspath(config_file))
 
     observer.start()
     logging.info("Configuration monitor started.")
