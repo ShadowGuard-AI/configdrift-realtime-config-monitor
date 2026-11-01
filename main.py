@@ -52,6 +52,9 @@ class ConfigChangeHandler(FileSystemEventHandler):
         if os.path.abspath(filepath) in self.config_files:
             self.check_config_drift(os.path.abspath(filepath))
 
+    # I check on every event, with no settling delay. An editor
+    # that writes a file in several steps can trigger several
+    # checks, and an early one may read a half written config.
     def on_modified(self, event):
         if event.is_directory:
             return
@@ -101,6 +104,9 @@ class ConfigChangeHandler(FileSystemEventHandler):
         """
         try:
             config_name = self.config_files[filepath]
+            # I build the baseline path from the given name plus .yaml,
+            # whatever the watched file itself is called or holds. A JSON
+            # config still needs its baseline stored as a .yaml file here.
             baseline_path = os.path.join(self.baseline_dir, f"{config_name}.yaml")
 
             if not os.path.exists(baseline_path):
@@ -205,6 +211,9 @@ def main():
         logging.error(f"Input validation error: {e}")
         sys.exit(1)
 
+    # I pair the two lists with zip into a dict keyed by path, so
+    # naming the same file twice keeps only its last name. The
+    # length check above cannot see that loss, it counts inputs.
     config_files_dict = dict(zip(args.config_files, args.config_names))
 
     event_handler = ConfigChangeHandler(
