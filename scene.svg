@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-label="Booming ground at dawn with windmill, lek ring and dust">
+<rect width="1200" height="360" fill="#faf7ee"/>
+<rect y="0" width="1200" height="120" fill="#f4b278"/>
+<rect y="96" width="1200" height="14" fill="#6e96af"><animate attributeName="opacity" values="0.5;0.9;0.5" dur="9s" repeatCount="indefinite"/></rect>
+<g stroke="#2b2824" stroke-width="3"><line x1="1050" y1="130" x2="1036" y2="52"/><line x1="1050" y1="130" x2="1064" y2="52"/>
+<g><animateTransform attributeName="transform" type="rotate" from="0 1050 44" to="360 1050 44" dur="14s" repeatCount="indefinite"/><g stroke="#2b2824"><line x1="1050" y1="44" x2="1050" y2="10"/><line x1="1050" y1="44" x2="1080" y2="60"/><line x1="1050" y1="44" x2="1020" y2="60"/></g></g></g>
+<rect y="230" width="1200" height="130" fill="#c4a46e"/>
+<g>
+<g><ellipse cx="300" cy="270" rx="52" ry="24" fill="#7a5e3e"/><circle cx="262" cy="252" r="14" fill="#e87720"><animate attributeName="r" values="10;16;10" dur="2.4s" repeatCount="indefinite"/></circle><animateTransform attributeName="transform" type="rotate" values="0 300 270;8 300 270;0 300 270" dur="4.8s" repeatCount="indefinite"/></g>
+<g><ellipse cx="620" cy="262" rx="52" ry="24" fill="#7a5e3e"/><circle cx="582" cy="244" r="14" fill="#e87720"><animate attributeName="r" values="16;10;16" dur="2.4s" repeatCount="indefinite"/></circle></g>
+<g><ellipse cx="900" cy="272" rx="52" ry="24" fill="#7a5e3e"/><circle cx="862" cy="254" r="14" fill="#e87720"><animate attributeName="r" values="10;16;10" dur="3s" repeatCount="indefinite"/></circle></g>
+</g>
+<g fill="#e8e0cc"><ellipse cx="240" cy="330" rx="26" ry="7" opacity="0.7"><animate attributeName="cx" values="240;300;240" dur="6s" repeatCount="indefinite"/></ellipse>
+<ellipse cx="700" cy="342" rx="30" ry="8" opacity="0.6"><animate attributeName="cx" values="700;760;700" dur="7s" repeatCount="indefinite"/></ellipse></g>
+</svg>

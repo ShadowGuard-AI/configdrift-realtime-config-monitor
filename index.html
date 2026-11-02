@@ -1,164 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Configdrift Realtime Config Monitor: what it is, how it runs, where it stops</title>
-<meta name="description" content="Configdrift Realtime Config Monitor is one of my projects. The README in the repo is short, so this page sticks to what the files themselves show.">
-<style>
-:root {
-  --bg: #f0ead8; --panel: #faf6ea; --ink: #1e342c;
-  --mut: #ffffff;
-  --acc: #b26e28; --acc2: #ac362c;
-  --line: #faf6ea;
-}
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--ink);
-  font-family: 'Book Antiqua', Georgia, serif; line-height: 1.55; }
-code, pre, .mono { font-family: 'Andale Mono', monospace; }
-a { color: var(--acc2); }
-.hero { padding: 3rem 6vw 1rem; }
-.hero img.banner { width: 100%; height: auto; border: 1px solid var(--line);
-  border-radius: 10px; }
-.logo { width: 92px; height: 92px; border-radius: 18px;
-  border: 1px solid var(--line); }
-h1 { font-size: 2.4rem; margin: 0.4em 0 0.1em; }
-h2 { border-bottom: 2px solid var(--acc); padding-bottom: 0.2em;
-  margin-top: 2em; }
-.lede { font-size: 1.15rem; max-width: 62ch; }
-main { padding: 0 6vw 3rem; max-width: 1180px; margin: 0 auto; }
-.grid { display: grid; gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
-.card { background: var(--panel); border: 1px solid var(--line);
-  border-radius: 12px; padding: 1rem 1.2rem; }
-.card.pop { animation: rise 0.7s ease both; }
-@keyframes rise { from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: none; } }
-pre.code { background: #101014; color: #e8e6df; padding: 1rem 1.2rem;
-  border-radius: 12px; overflow-x: auto; font-size: 0.86rem;
-  border-left: 5px solid var(--acc); }
-table { border-collapse: collapse; width: 100%; }
-td, th { border-bottom: 1px solid var(--line); padding: 0.45rem 0.6rem;
-  text-align: left; }
-.shots { display: grid; gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-.shots img { width: 100%; height: auto; border: 1px solid var(--line);
-  border-radius: 10px; background: #f4f1e8; }
-footer { padding: 2rem 6vw; border-top: 1px solid var(--line);
-  color: var(--mut); }
-.rail { display: flex; gap: 1.2rem; align-items: flex-start; }
-.rail nav { position: sticky; top: 1rem; min-width: 180px; }
-@media (max-width: 760px) { .rail { flex-direction: column; }
-  .rail nav { position: static; } }
-@media (prefers-reduced-motion: reduce) {
-  .card.pop { animation: none; } * { scroll-behavior: auto; } }
-</style>
-</head>
-<body class="layout-split">
-<!-- This page exists for configdrift-realtime-config-monitor alone: the layout (split-hero),
-     the colors, and the type were picked for this project, not
-     shared with the other project pages. The code block below is
-     copied from the file it names, line for line. If it looks
-     plain, that is because the project is plain, and I would
-     rather the page match the project than dress it up. The one
-     thing I will not do here is oversell: what this project does
-     not do is stated on the page, not hidden from it. -->
-<header class="hero">
-  <img class="logo" src="assets/logo.png" alt="Configdrift Realtime Config Monitor logo">
-  <img class="banner" src="assets/banner.png" alt="">
-  <h1>Configdrift Realtime Config Monitor</h1>
-  <p class="mono"><a href="https://github.com/ShadowGuard-AI/configdrift-realtime-config-monitor">github.com/ShadowGuard-AI/configdrift-realtime-config-monitor</a></p>
-</header>
+<html lang="en-GB"><head><meta charset="utf-8"><title>configdrift-realtime-config-monitor</title>
+<style>@font-face{font-family:Display;src:url(fonts/MaidenOrange.ttf)} body{font-family:Georgia,serif;margin:2rem} h1,h2{font-family:Display,sans-serif} img{max-width:100%}</style></head>
+<body><img src="intro-banner.png" alt="Introduction banner">
+<h1>configdrift-realtime-config-monitor</h1><img src="banner.png" alt="Wordmark banner"><img src="scene.svg" alt="Animated scene">
+<img src="logo.png" alt="Logo"><p>Theme: Prairie Chicken Booming Ground.</p><button type='button'>Watch These Files</button><button type='button'>Open the Baseline Directory</button><button type='button'>Show the Full Row</button><section><h2>From the Outer Grass</h2><p>The monitor watches named configuration files in real time through filesystem events supplied by watchdog, checks every watched file once at startup, and compares each file with its YAML baseline using DeepDiff while ignoring order.</p></section><section><h2>The Ring Itself</h2><p>The clone line is reproduced exactly as the README prints it, fault and all. The working form from the parser in main.py is python main.py followed by the required file list, the required name list, and the required baseline directory.</p></section><section><h2>The Windmill Row</h2><p>Parameters in full: -h, -c or --config-files (required), -n or --config-names (required), -b or --baseline-dir (required), -i or --interval (integer seconds, default 1), --version-control (accepted, integration not implemented), and --debug.</p></section><section><h2>At the Stock Tank</h2><p>Validation refuses a start with exit 1 when the lists differ in length, when the baseline directory does not exist, or when a watched file does not exist. The licence position is divided, as recorded in the facts list.</p></section><h2>Facts from the code and the README</h2><ul><li>The monitor watches named configuration files in real time through filesystem events supplied by watchdog.</li><li>Every watched file is checked once at startup before the observer starts, so drift already present at launch is reported.</li><li>A modification, a creation, a deletion, or a move touching a watched path sets off a fresh comparison.</li><li>Each comparison loads the current file and its baseline through the YAML loader, whatever extension the watched file itself carries.</li><li>The baseline path is built from the paired name with a .yaml ending inside the baseline directory.</li><li>The two are compared with DeepDiff while ignoring order.</li><li>Where a difference exists, a warning is logged carrying the drift and the file name.</li><li>Where no difference exists, an information line says so.</li><li>Where a watched file has been deleted or renamed away, a warning states that it is missing and no longer matches its baseline.</li><li>No message is sent to any other channel, because the code provides none.</li><li>Working form from the parser in main.py: python main.py is followed by the required file list, the required name list, and the required baseline directory.</li><li>The parameter -h shows help and leaves.</li><li>The parameter -c or --config-files takes one or more configuration files and is required.</li><li>The parameter -n or --config-names takes one or more names in the same order as the files and is required, because each name decides which baseline file is opened.</li><li>The parameter -b or --baseline-dir names the directory that holds the baselines and is required.</li><li>The parameter -i or --interval gives an integer number of seconds with a default of 1.</li><li>The flag --version-control is accepted, and its integration is stated in the code as not implemented.</li><li>The flag --debug raises the logging level.</li><li>Naming the same file twice under two names keeps only the last name when the lists are paired.</li><li>A file written by an editor in several steps can be checked while it is still half written, because no settling delay is applied.</li><li>Validation refuses a start, with exit 1, when the two lists differ in length, when the baseline directory does not exist, or when a watched file does not exist.</li><li>A missing baseline file for one name is logged as an error for that check alone.</li><li>The repository carries an MIT License file, while the README licence section prints only a copyright line in another organisation name.</li><li>The README usage line is a placeholder and is kept as printed, with the parser form set beside it in the themed notes.</li></ul>
+<pre>![Banner](banner.png)
 
-<main>
-  <section class="rail">
-    <nav aria-label="on this page">
-      <p class="mono"><a href="#run">Run it</a><br>
-      <a href="#files">The files</a><br>
-      <a href="#sheets">The sheets</a><br>
-      <a href="https://github.com/ShadowGuard-AI/configdrift-realtime-config-monitor">The repo</a></p>
-    </nav>
-    <div>
-      <p class="lede">Configdrift Realtime Config Monitor is one of my projects. The README in the repo is short, so this page sticks to what the files themselves show.</p>
-      <div class="grid">
-        <div class="card pop"><h3>What it is</h3>
-          <p>Configdrift Realtime Config Monitor: 3 files, 237 counted
-          lines across Python 212, Markdown 20, Text 5. One job, done in the
-          open, in files you can read.</p></div>
-        <div class="card pop"><h3>The biggest piece</h3>
-          <p><code>main.py</code> carries the most
-          lines. If the project grows, that file is where the growth
-          lands first, for better or worse.</p></div>
-        <div class="card pop"><h3>The honest gap</h3>
-          <p>No test files yet. That is the honest gap, and the roadmap in the visuals folder says what the first one should cover.</p></div>
-      </div>
-      <section id="run">
-        <h2>Run it</h2>
-        <p>The repo README has the exact commands for this one. The
-        shape is the shape for most of my projects: clone it, read the
-        top file first so you know what will happen, then run it on
-        something you do not mind breaking.</p>
-        <p class="mono">$ git clone https://github.com/ShadowGuard-AI/configdrift-realtime-config-monitor.git<br>$ cd configdrift-realtime-config-monitor</p>
-      </section>
-      
-  <section aria-label="real code">
-    <h2>The code, as it sits in the repo</h2>
-    <p>From <code>main.py</code>, line 18 on. I did
-    not tidy it for the page. What you see is what the file has.</p>
-    <pre class="code"><code>
+# configdrift-realtime-config-monitor
+A tool that monitors system configuration files in real-time and alerts on any unexpected changes, using file system events (e.g., via `watchdog`). - Focused on Detects unauthorized or unexpected changes to system configurations. Compares current configuration files against known good baselines and reports any deviations. A --version-control flag is accepted, but the version control integration is not implemented.
 
-class ConfigChangeHandler(FileSystemEventHandler):
-    &quot;&quot;&quot;Handles file system events for configuration files.&quot;&quot;&quot;
+## Install
+`git clone https://github.com/ShadowStrikeHQ/configdrift-realtime-config-monitor`
 
-    def __init__(
-        self,
-        config_files: Dict[str, str],
-        baseline_dir: str,
-        version_control: bool = False,
-    ) -&gt; None:
-        &quot;&quot;&quot;
-        Initializes the ConfigChangeHandler.
+## Usage
+`./configdrift-realtime-config-monitor [params]`
 
-        Args:
-            config_files: A dictionary mapping configuration file paths to their names.
-            baseline_dir: The directory containing baseline configuration files.
-            version_control: Whether to integrate with version control (not implemented).
-        &quot;&quot;&quot;
-        super().__init__()
-        self.config_files = config_files
-        self.baseline_dir = baseline_dir</code></pre>
-  </section>
-      <section id="files">
-        <h2>The files that matter</h2>
-        <table><tr><th>File</th><th>Lines</th></tr>
-        <tr><td><code>main.py</code></td><td>212</td></tr>
-        <tr><td><code>README.md</code></td><td>20</td></tr>
-        <tr><td><code>requirements.txt</code></td><td>5</td></tr>
-        </table>
-        <p>Names doing the work: <span class="mono">ConfigChangeHandler, setup_argparse, validate_input, main, __init__, on_modified, check_config_drift</span>.</p>
-      </section>
-      <section id="sheets">
-        <h2>Drawn by hand</h2>
-        <p>I sketch my projects on notebook paper so I have to
-        understand them well enough to draw them. The full set,
-        with the counts and how they were counted, is the
-        <a href="https://github.com/ShadowGuard-AI/configdrift-realtime-config-monitor/tree/main/configdrift-realtime-config-monitor-Visuals">configdrift-realtime-config-monitor-Visuals</a>
-        folder in the repo. Nothing is drawn over the binder holes.
-        That is a rule, not a style.</p>
-        <div class="shots">
-          <img src="assets/architecture.png" alt="Hand drawn architecture sheet for Configdrift Realtime Config Monitor">
-          <img src="assets/flowchart.png" alt="Hand drawn flowchart sheet for Configdrift Realtime Config Monitor">
-          <img src="assets/product-map.png" alt="Hand drawn product map sheet for Configdrift Realtime Config Monitor">
-        </div>
-      </section>
-    </div>
-  </section>
-</main>
-<footer>
-  <p>Configdrift Realtime Config Monitor is one of my projects. This page was written
-  from the repo itself on 2026-10-30: the counts are the
-  repo's counts, the code is the repo's code, and the gaps are the
-  repo's gaps.</p>
-</footer>
-</body>
-</html>
+## Parameters
+- `-h`: Show help message and exit
+- `-c`: No description provided
+- `-n`: No description provided
+- `-b`: No description provided
+- `-i`: The time interval in seconds to check for changes.
+- `--version-control`: No description provided
+- `--debug`: Enable debug logging.
+
+## License
+Copyright (c) ShadowStrikeHQ
+</pre>
+</body></html>
