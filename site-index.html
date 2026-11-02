@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-GB"><head><meta charset="utf-8"><title>configdrift-realtime-config-monitor</title>
+<style>@font-face{font-family:Display;src:url(fonts/MaidenOrange.ttf)} body{font-family:Georgia,serif;margin:2rem} h1,h2{font-family:Display,sans-serif} img{max-width:100%}</style></head>
+<body><img src="intro-banner.png" alt="Introduction banner">
+<h1>configdrift-realtime-config-monitor</h1><img src="banner.png" alt="Wordmark banner"><img src="scene.svg" alt="Animated scene">
+<img src="logo.png" alt="Logo"><p>Theme: Prairie Chicken Booming Ground.</p><button type='button'>Watch These Files</button><button type='button'>Open the Baseline Directory</button><button type='button'>Show the Full Row</button><section><h2>From the Outer Grass</h2><p>The monitor watches named configuration files in real time through filesystem events supplied by watchdog, checks every watched file once at startup, and compares each file with its YAML baseline using DeepDiff while ignoring order.</p></section><section><h2>The Ring Itself</h2><p>The clone line is reproduced exactly as the README prints it, fault and all. The working form from the parser in main.py is python main.py followed by the required file list, the required name list, and the required baseline directory.</p></section><section><h2>The Windmill Row</h2><p>Parameters in full: -h, -c or --config-files (required), -n or --config-names (required), -b or --baseline-dir (required), -i or --interval (integer seconds, default 1), --version-control (accepted, integration not implemented), and --debug.</p></section><section><h2>At the Stock Tank</h2><p>Validation refuses a start with exit 1 when the lists differ in length, when the baseline directory does not exist, or when a watched file does not exist. The licence position is divided, as recorded in the facts list.</p></section><h2>Facts from the code and the README</h2><ul><li>The monitor watches named configuration files in real time through filesystem events supplied by watchdog.</li><li>Every watched file is checked once at startup before the observer starts, so drift already present at launch is reported.</li><li>A modification, a creation, a deletion, or a move touching a watched path sets off a fresh comparison.</li><li>Each comparison loads the current file and its baseline through the YAML loader, whatever extension the watched file itself carries.</li><li>The baseline path is built from the paired name with a .yaml ending inside the baseline directory.</li><li>The two are compared with DeepDiff while ignoring order.</li><li>Where a difference exists, a warning is logged carrying the drift and the file name.</li><li>Where no difference exists, an information line says so.</li><li>Where a watched file has been deleted or renamed away, a warning states that it is missing and no longer matches its baseline.</li><li>No message is sent to any other channel, because the code provides none.</li><li>Working form from the parser in main.py: python main.py is followed by the required file list, the required name list, and the required baseline directory.</li><li>The parameter -h shows help and leaves.</li><li>The parameter -c or --config-files takes one or more configuration files and is required.</li><li>The parameter -n or --config-names takes one or more names in the same order as the files and is required, because each name decides which baseline file is opened.</li><li>The parameter -b or --baseline-dir names the directory that holds the baselines and is required.</li><li>The parameter -i or --interval gives an integer number of seconds with a default of 1.</li><li>The flag --version-control is accepted, and its integration is stated in the code as not implemented.</li><li>The flag --debug raises the logging level.</li><li>Naming the same file twice under two names keeps only the last name when the lists are paired.</li><li>A file written by an editor in several steps can be checked while it is still half written, because no settling delay is applied.</li><li>Validation refuses a start, with exit 1, when the two lists differ in length, when the baseline directory does not exist, or when a watched file does not exist.</li><li>A missing baseline file for one name is logged as an error for that check alone.</li><li>The repository carries an MIT License file, while the README licence section prints only a copyright line in another organisation name.</li><li>The README usage line is a placeholder and is kept as printed, with the parser form set beside it in the themed notes.</li></ul>
+<pre>![Banner](banner.png)
+
+# configdrift-realtime-config-monitor
+A tool that monitors system configuration files in real-time and alerts on any unexpected changes, using file system events (e.g., via `watchdog`). - Focused on Detects unauthorized or unexpected changes to system configurations. Compares current configuration files against known good baselines and reports any deviations. A --version-control flag is accepted, but the version control integration is not implemented.
+
+## Install
+`git clone https://github.com/ShadowStrikeHQ/configdrift-realtime-config-monitor`
+
+## Usage
+`./configdrift-realtime-config-monitor [params]`
+
+## Parameters
+- `-h`: Show help message and exit
+- `-c`: No description provided
+- `-n`: No description provided
+- `-b`: No description provided
+- `-i`: The time interval in seconds to check for changes.
+- `--version-control`: No description provided
+- `--debug`: Enable debug logging.
+
+## License
+Copyright (c) ShadowStrikeHQ
+</pre>
+</body></html>
