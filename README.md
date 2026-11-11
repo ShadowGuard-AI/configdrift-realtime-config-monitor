@@ -1,16 +1,16 @@
-![Introduction banner](intro-banner.png)
+![A seismograph drum close up, its stylus drawing one sudden jag in an otherwise level ink trace across plain paper, brass fittings at the sides, with no lettering anywhere](intro-banner.png)
 
 # configdrift-realtime-config-monitor
 
 Theme: Prairie Chicken Booming Ground. Display face: MaidenOrange. Text face: Archivo.
 
-![Wordmark banner](banner.png)
+![A quiet seismograph station room, a paper drum turning under its stylus, a second drum beside it and a keeper fitting a plain sheet, dark hills beyond the windows, with no lettering anywhere](banner.png)
 
 ![Animated scene](scene.svg)
 
 ![Separator](sep-heavy.svg)
 
-![Banner](banner.png)
+![A quiet seismograph station room, a paper drum turning under its stylus, a second drum beside it and a keeper fitting a plain sheet, dark hills beyond the windows, with no lettering anywhere](banner.png)
 
 # configdrift-realtime-config-monitor
 A tool that monitors system configuration files in real-time and alerts on any unexpected changes, using file system events (e.g., via `watchdog`). - Focused on Detects unauthorized or unexpected changes to system configurations. Compares current configuration files against known good baselines and reports any deviations. A --version-control flag is accepted, but the version control integration is not implemented.
